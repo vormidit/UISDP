@@ -1,0 +1,30 @@
+
+input{
+border-radius: 5px;
+}
+
+.form-title{
+padding: 10;
+width: auto fit
+display: ruby-text;
+color: white;
+}
+
+.search-form{
+padding: 10;
+float: left;
+}
+#response_info_search, #response_info_del{
+color: white;
+float: right;
+}
+#form{
+float: left:
+}
+#stu_info{
+margin-right: 150px;
+border-collapse: collapse;
+border-color: white;
+border: 1px;
+}
+

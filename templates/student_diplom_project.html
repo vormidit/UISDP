@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8>
+    <title>Admin</title>
+      <link rel="stylesheet" href="{{ url_for('static',filename='css/admin_main.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/admin_nav.css') }}">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  
+  <body>
+
+             <div class="topnav">
+                  <div class="navlink" >
+                      <a  href="/student_main"  >Home</a>
+                  </div>
+
+                 <div class="navlink" >
+                      <a  href="/student_diplom_project"  >Дипломен проект</a>
+                 </div>
+
+                 <div class="navlink" >
+                      <a  href="/student_prof_change"  >Моят Профил</a>
+                 </div>
+                 
+                  <div class="navlink" style="float:right">
+                      <a target=_parent href="{{ url_for('logout') }}">Изход</a>
+                  </div>
+            </div>
+
+             <div class="wrap">
+
+              <div class="information">
+
+              </div>
+
+              <div class="uploads">
+
+              </div>
+              <div class="downloads">
+
+              </div>
+
+             </div>
+
+  </body>
+
+
+<script>
+
+
+
+</script>
+</html>

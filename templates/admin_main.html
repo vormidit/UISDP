@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8>
+    <title>Admin</title>
+      <link rel="stylesheet" href="{{ url_for('static',filename='css/admin_main.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/admin_nav.css') }}">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  
+  <body>
+
+             <div class="topnav">
+                  <div class="navlink" >
+                      <a id="/admin_main" href="/admin_main"  >Home</a>
+                  </div>
+                  <div class="navlink">
+                      <div class="dropdown">
+                          <a class="drop">Студенти</a>
+                          <div class="dropdown-content">
+                            <a href="/admin_stu_search"  >Търсене</a>
+                            <a  href="/admin_stu_add"  >Регистриране</a>
+                            <a  href="/admin_stu_del"  >Премахване</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="navlink">
+                      <div class="dropdown">
+                          <a class="drop">Преподаватели</a>
+                          <div class="dropdown-content">
+                            <a href="/admin_tea_search"   >Търсене</a>
+                            <a href="/admin_tea_add"   >Регистриране</a>
+                            <a href="/admin_tea_del"  >Премахване</a>
+                          </div>
+                      </div>
+                  </div>
+                   <div class="navlink">
+                       <div class="dropdown">
+                          <a class="drop">Администратори</a>
+                           <div class="dropdown-content">
+                            <a href="/admin_adm_search"   >Търсене</a>
+                            <a href="/admin_adm_add"  >Регистриране</a>
+                            <a href="/admin_adm_del"  >Премахване</a>
+                          </div>
+                      </div>
+                   </div>
+                  <div class="navlink">
+                      <a href="/admin_prof_change"   >Моят Профил</a>
+                  </div>
+                  <div class="navlink" style="float:right">
+                      <a target=_parent href="{{ url_for('logout') }}">Изход</a>
+                  </div>
+            </div>
+
+             <div class="wrap">
+
+              <div class="title">
+                <text>Информационна система за управление на дипломно проектиране</text>
+              </div>
+
+              <div  class="info-account">
+                <em>Добре дошли: <b>{{ data['username'] }}</b></em>
+              </div>
+
+              <div  class="info-system">
+                <em >Общ брой потребители в системата: {{ data['count_usr'] }}</em>
+              </div>
+
+            </div>
+  </body>
+
+
+<script>
+
+
+
+</script>
+</html>

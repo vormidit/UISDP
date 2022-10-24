@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8>
+	  <link rel="stylesheet" href="{{ url_for('static',filename='css/admin_main.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/admin_nav.css') }}">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/admin_ast_del.css') }}">
+
+
+  </head>
+
+  <body >
+       <div class="topnav">
+                  <div class="navlink" >
+                      <a id="/admin_main" href="/admin_main"  >Home</a>
+                  </div>
+                  <div class="navlink">
+                      <div class="dropdown">
+                          <a class="drop">Студенти</a>
+                          <div class="dropdown-content">
+                            <a href="/admin_stu_search"  >Търсене</a>
+                            <a  href="/admin_stu_add"  >Регистриране</a>
+                            <a  href="/admin_stu_del"  >Премахване</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="navlink">
+                      <div class="dropdown">
+                          <a class="drop">Преподаватели</a>
+                          <div class="dropdown-content">
+                            <a href="/admin_tea_search"   >Търсене</a>
+                            <a href="/admin_tea_add"   >Регистриране</a>
+                            <a href="/admin_tea_del"  >Премахване</a>
+                          </div>
+                      </div>
+                  </div>
+                   <div class="navlink">
+                       <div class="dropdown">
+                          <a class="drop">Администратори</a>
+                           <div class="dropdown-content">
+                            <a href="/admin_adm_search"   >Търсене</a>
+                            <a href="/admin_adm_add"  >Регистриране</a>
+                            <a href="/admin_adm_del"  >Премахване</a>
+                          </div>
+                      </div>
+                   </div>
+                  <div class="navlink">
+                      <a href="/admin_prof_change"   >Моят Профил</a>
+                  </div>
+                  <div class="navlink" style="float:right">
+                      <a target=_parent href="{{ url_for('logout') }}">Изход</a>
+                  </div>
+            </div>
+
+             <div class="wrap">
+                 <br>
+				 <form id="Form" class="del-form" >
+		            <div class="form-title">
+			             Изтртиване на запис по Факултетен номер
+	                </div>
+		            <br>
+		            <div class="wrap-input">
+			            <input required type="text" name="fnumber">
+                    </div>
+                    <br>
+		            <div class="del-btn">
+			            <button class="delete-btn" type="button" onclick="deleteForm()">Изтриване</button>
+                    </div>
+                 </form>
+                 <br>
+                 <div id="response_info_del"></div>
+             </div>
+
+  </body>
+
+<script>
+function deleteForm(){
+
+    var form = document.getElementById('Form');
+    var formData = new FormData(form);
+    var xhttp = new XMLHttpRequest();
+
+    for (const value of formData.values()) {
+        if(!value){alert('Моля въведи факултетен номер!');return;}
+    }
+    xhttp.onreadystatechange = function() {
+        console.log(this.status);
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("Form").reset();
+            alert("Потребителят е премахнат успешно!");
+      }
+    };
+    xhttp.open("DELETE", "/admin_tea_del", true);
+    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(JSON.stringify(Object.fromEntries(formData)));
+}
+
+</script>
+</html>

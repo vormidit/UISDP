@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8>
+	  <link rel="stylesheet" href="{{ url_for('static',filename='css/admin_main.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/admin_nav.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/admin_ast_add.css') }}">
+  </head>
+
+  <body >
+      <div class="topnav">
+                  <div class="navlink" >
+                      <a id="/admin_main" href="/admin_main"  >Home</a>
+                  </div>
+                  <div class="navlink">
+                      <div class="dropdown">
+                          <a class="drop">Студенти</a>
+                          <div class="dropdown-content">
+                            <a href="/admin_stu_search"  >Търсене</a>
+                            <a  href="/admin_stu_add"  >Регистриране</a>
+                            <a  href="/admin_stu_del"  >Премахване</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="navlink">
+                      <div class="dropdown">
+                          <a class="drop">Преподаватели</a>
+                          <div class="dropdown-content">
+                            <a href="/admin_tea_search"   >Търсене</a>
+                            <a href="/admin_tea_add"   >Регистриране</a>
+                            <a href="/admin_tea_del"  >Премахване</a>
+                          </div>
+                      </div>
+                  </div>
+                   <div class="navlink">
+                       <div class="dropdown">
+                          <a class="drop">Администратори</a>
+                           <div class="dropdown-content">
+                            <a href="/admin_adm_search"   >Търсене</a>
+                            <a href="/admin_adm_add"  >Регистриране</a>
+                            <a href="/admin_adm_del"  >Премахване</a>
+                          </div>
+                      </div>
+                   </div>
+                  <div class="navlink">
+                      <a href="/admin_prof_change"   >Моят Профил</a>
+                  </div>
+                  <div class="navlink" style="float:right">
+                      <a target=_parent href="{{ url_for('logout') }}">Изход</a>
+                  </div>
+	  </div>
+	  <div class="wrap">
+
+		  <form id="Form" class="add-form" method="POST">
+					  <table class="div-wrap" style="height:120px;">
+									<tr>
+										<td class="form-title">
+										  Редактиране на Профил
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											<label>Въведи Ново Потр. Име:
+												<input required type="text" name="username" value='{{session["username"]}}'>
+										   </label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>Въведи Нова Парола:
+												<input required type="password" name="password">
+										   </label>
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											<div class="add-btn">
+												<button class="ad-btn" type="button" onclick="profileForm()">Промени</button>
+											</div>
+										</td>
+									</tr>
+					  </table>
+		  </form>
+		  <br>
+		  <div id="response_info_profile">
+
+		  </div>
+	  </div>
+
+  </body>
+
+<script>
+function profileForm(){
+
+    var form = document.getElementById('Form');
+    var formData = new FormData(form);
+    var xhttp = new XMLHttpRequest();
+
+    for (const value of formData.values()) {
+        if(!value){alert('Моля въведи всички полета!');return;}
+    }
+    xhttp.onreadystatechange = function() {
+        console.log(this.status);
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("Form").reset();
+            alert("Успешна промяна!");
+      }
+    };
+    xhttp.open("POST", "/admin_prof_change", true);
+    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(JSON.stringify(Object.fromEntries(formData)));
+}
+</script>
+</html>

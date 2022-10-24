@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ИСУДП</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
+
+</head>
+<body>
+    
+
+		<div class="container-login">
+		        
+
+
+				<div class="login-title">
+			        <p>Информационна система за управление на дипломно проектиране</p>
+			        <p>Технически Университет - София, филиал Пловдив</p>
+			        <p>Факултет Електроника и Автоматика</p>
+				</div>
+				<br>
+
+				<div class="wrap-image">        
+			 	    <img class="image" src="{{ url_for('static', filename='images/student_hat.png')}}">
+				</div>
+
+				<form action="/login" class="login-form" method="POST">
+
+					<div class="form-title">
+						Потребителски Вход
+					</div>
+                    <br>
+
+					<div class="wrap-input" data-validate = "Username is required!">
+						<input required type="text" name="username" placeholder="username">
+					</div>
+					<br>
+
+					<div class="wrap-input" data-validate = "Password is required!">
+						<input required type="password" name="password" placeholder="password">
+					</div>
+					<br>
+
+					<div class="div-login-btn">
+						<button class="login-btn" type="submit">Вход</button>
+					</div>
+					<br>
+					{% if error %}  
+					  <p style="font-size: 15px; color: red; margin-top: 2.5px">{{error}}</p>
+					{% endif %}
+					<div class="text-pswrd-link">
+						<a href="{{ url_for('psw_reset_view') }}">
+							Забравена Парола?
+						</a>
+					</div>
+
+				</form>
+
+		</div>
+
+	
+	
+<!--===============================================================================================-->
+	<!--<script src="{{ url_for('static', filename='js/main.js') }}"></script>-->
+
+</body>
+</html>

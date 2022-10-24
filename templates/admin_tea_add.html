@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset=utf-8>
+	  <link rel="stylesheet" href="{{ url_for('static',filename='css/admin_main.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/admin_nav.css') }}">
+	  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/admin_ast_add.css') }}">
+  </head>
+  <body>
+
+      <div class="topnav">
+                  <div class="navlink" >
+                      <a id="/admin_main" href="/admin_main"  >Home</a>
+                  </div>
+                  <div class="navlink">
+                      <div class="dropdown">
+                          <a class="drop">Студенти</a>
+                          <div class="dropdown-content">
+                            <a href="/admin_stu_search"  >Търсене</a>
+                            <a  href="/admin_stu_add"  >Регистриране</a>
+                            <a  href="/admin_stu_del"  >Премахване</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="navlink">
+                      <div class="dropdown">
+                          <a class="drop">Преподаватели</a>
+                          <div class="dropdown-content">
+                            <a href="/admin_tea_search"   >Търсене</a>
+                            <a href="/admin_tea_add"   >Регистриране</a>
+                            <a href="/admin_tea_del"  >Премахване</a>
+                          </div>
+                      </div>
+                  </div>
+                   <div class="navlink">
+                       <div class="dropdown">
+                          <a class="drop">Администратори</a>
+                           <div class="dropdown-content">
+                            <a href="/admin_adm_search"   >Търсене</a>
+                            <a href="/admin_adm_add"  >Регистриране</a>
+                            <a href="/admin_adm_del"  >Премахване</a>
+                          </div>
+                      </div>
+                   </div>
+                  <div class="navlink">
+                      <a href="/admin_prof_change"   >Моят Профил</a>
+                  </div>
+                  <div class="navlink" style="float:right">
+                      <a target=_parent href="{{ url_for('logout') }}">Изход</a>
+                  </div>
+	  </div>
+	  <div class="wrap">
+
+				<form id="Form" class="add-form" method="POST">
+				  <table class="div-wrap">
+								<tr>
+									<td class="form-title">
+									  Регистриране на Преподавател
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<label>Въведи фак. номер:
+											<input required type="text" name="fnumber">
+									   </label>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label>Въведи Име:
+											<input required type="text" name="fname">
+									   </label>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<label>Въведи Фамилия:
+											<input required type="text" name="lname">
+										</label>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<label>Изберете Роля:
+											<select  name="role"  style="width=211px;">
+												<option value="dean">Декан</option>
+												<option value="head_of_department">Ръководител катедра</option>
+												<option value="head_of_department2">Ръководител катедра*</option>
+												<option value="project_manager">Ръководител на дипломна</option>
+												<option value="reviewer">Рецензент</option>
+											</select>
+										</label>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<label>Изберете Катедра:
+											<select  name="department" style="width=211px;">
+												<option value="dean">   </option>
+												<option value="cst">КСТ</option>
+												<option value="e">Е</option>
+												<option value="su">СУ</option>
+												<option value="et">ЕТ</option>
+											</select>
+										</label>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<label>Въведи Е-Поща:
+											<input required type="text" name="mail">
+										</label><br>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<label>Въведи Потр. Име:
+											<input required type="text" name="username">
+										</label>
+									</td>
+								</tr>
+
+								<tr>
+									<td>
+										<label>Въведи Парола:
+											<input required type="text" name="password">
+										</label><br>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="add-btn">
+											<button type="button" onclick="addForm()">Регистрирай</button>
+										</div>
+									</td>
+								</tr>
+
+				  </table>
+
+
+				</form>
+		        <br>
+		        <div id="response_info_add">
+
+				</div>
+	  </div>
+
+
+
+
+
+
+  </body>
+<script>
+function addForm(){
+
+    var form = document.getElementById('Form');
+    var formData = new FormData(form);
+    var xhttp = new XMLHttpRequest();
+
+    for (const value of formData.values()) {
+        if(!value){alert('Моля въведи всички полета!');return;}
+    }
+    xhttp.onreadystatechange = function() {
+        console.log(this.status);
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("Form").reset();
+            alert("Успешна регистрация!");
+      }
+    };
+    xhttp.open("POST", "/admin_tea_add", true);
+    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(JSON.stringify(Object.fromEntries(formData)));
+}
+</script>
+</html>

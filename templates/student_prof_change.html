@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8>
+    <title>Admin</title>
+      <link rel="stylesheet" href="{{ url_for('static',filename='css/admin_main.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/admin_nav.css') }}">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  
+  <body>
+
+             <div class="topnav">
+                  <div class="navlink" >
+                      <a  href="/student_main"  >Home</a>
+                  </div>
+
+                 <div class="navlink" >
+                      <a  href="/student_diplom_project"  >Дипломен проект</a>
+                 </div>
+
+                 <div class="navlink" >
+                      <a  href="/student_prof_change"  >Моят Профил</a>
+                 </div>
+
+                  <div class="navlink" style="float:right">
+                      <a target=_parent href="{{ url_for('logout') }}">Изход</a>
+                  </div>
+            </div>
+
+             <div class="wrap">
+
+              <div class="">
+                  <form id="Form" class="add-form" method="POST">
+					  <table class="div-wrap" style="height:120px;">
+									<tr>
+										<td class="form-title">
+										  Редактиране на Профил
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											<label>Въведи Ново Потр. Име:
+												<input required type="text" name="username" value='{{session["username"]}}'>
+										   </label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>Въведи Нова Парола:
+												<input required type="password" name="password">
+										   </label>
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											<div class="add-btn">
+												<button class="ad-btn" type="button" onclick="profileForm()">Промени</button>
+											</div>
+										</td>
+									</tr>
+					  </table>
+		  </form>
+
+              </div>
+
+
+
+            </div>
+  </body>
+
+
+<script>
+function profileForm(){
+
+    var form = document.getElementById('Form');
+    var formData = new FormData(form);
+    var xhttp = new XMLHttpRequest();
+
+    for (const value of formData.values()) {
+        if(!value){alert('Моля въведи всички полета!');return;}
+    }
+    xhttp.onreadystatechange = function() {
+        console.log(this.status);
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("Form").reset();
+            alert("Успешна промяна!");
+      }
+    };
+    xhttp.open("POST", "/student_prof_change", true);
+    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(JSON.stringify(Object.fromEntries(formData)));
+}
+
+
+</script>
+</html>

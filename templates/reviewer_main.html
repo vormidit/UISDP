@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8>
+    <title>Admin</title>
+      <link rel="stylesheet" href="{{ url_for('static',filename='css/admin_main.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/admin_nav.css') }}">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  
+  <body>
+
+             <div class="topnav">
+                  <div class="navlink" >
+                      <a  href="/reviewer_main"  >Home</a>
+                  </div>
+
+                 <div class="navlink" >
+                      <a  href="/reviewer_students"  >Студенти</a>
+                 </div>
+
+                 <div class="navlink" >
+                      <a  href="/reviewer_reviews"  >Рецензии</a>
+                 </div>
+
+                 <div class="navlink">
+                      <a href="/reviewer_prof_change"   >Моят Профил</a>
+                  </div>
+                  <div class="navlink" style="float:right">
+                      <a target=_parent href="{{ url_for('logout') }}">Изход</a>
+                  </div>
+            </div>
+
+             <div class="wrap">
+
+              <div class="title">
+                <text>Информационна система за управление на дипломно проектиране</text>
+              </div>
+
+              <div  class="info-account">
+                <em>Добре дошли: <b>{{ data['username'] }}</b></em>
+              </div>
+
+            </div>
+  </body>
+
+
+<script>
+
+
+
+</script>
+</html>

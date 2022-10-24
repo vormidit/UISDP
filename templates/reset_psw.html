@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ИСУДП</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
+
+</head>
+<body>
+    
+
+		<div class="container-login">
+		        
+
+
+				<div class="login-title">
+			        <p>Информационна система за управление на дипломно проектиране</p>
+			        <p>Технически Университет - София, филиал Пловдив</p>
+			        <p>Факултет Електроника и Автоматика</p>
+				</div>
+				<br>
+
+				<div class="wrap-image">        
+			 	    <img class="image" src="{{ url_for('static', filename='images/student_hat.png')}}">
+				</div>
+
+				<form id="Form" class="login-form" method="POST">
+
+					<div class="form-title">
+						Моля въведете нова парола!
+					</div>
+                    <br>
+
+					<div class="wrap-input" data-validate = "Password is required!">
+						<input required type="password" name="password" placeholder="password">
+					</div>
+					<br>
+
+					<div class="div-login-btn">
+						<button class="login-btn" type="button" onclick="postForm()">Поднови</button>
+					</div>
+					<br>
+					{% if error %}  
+					  <p style="font-size: 15px; color: red; margin-top: 2.5px">{{error}}</p>
+					{% endif %}
+
+
+				</form>
+
+		</div>
+
+</body>
+
+
+<script type="text/javascript">
+
+function postForm(){
+    var form = document.getElementById('Form');
+    var formData = new FormData(form);
+    var xhttp = new XMLHttpRequest();
+    var url = window.location.pathname;
+    console.log(url);
+    for (const value of formData.values()) {
+        if(!value){alert('Моля въведи всички полета!');return;}
+    }
+    xhttp.onreadystatechange = function() {
+        console.log(this.status);
+        if (this.readyState == 4 && this.status == 200) {
+            alert("Успешна промяна!");
+            window.location.href="/index";
+
+
+      }
+    };
+    xhttp.open("POST", url, true);
+    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(JSON.stringify(Object.fromEntries(formData)));
+}
+
+
+
+</script>
+</html>

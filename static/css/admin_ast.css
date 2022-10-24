@@ -1,0 +1,52 @@
+
+html {
+    height: 100%;
+}
+body {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+
+}
+
+.main_div {
+ width: 1024px;
+ height: 550px;
+ background-color: grey;
+ display: block;
+}
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: grey;
+}
+li{
+float: left;
+bottom: 15;
+padding: 15;
+}
+
+li a:hover{
+background-color: #696969;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+a{
+cursor: pointer;
+}

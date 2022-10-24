@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ИСУДП</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
+
+</head>
+<body>
+    
+
+		<div class="container-login">
+		        
+
+
+				<div class="login-title">
+			        <p>Информационна система за управление на дипломно проектиране</p>
+			        <p>Технически Университет - София, филиал Пловдив</p>
+			        <p>Факултет Електроника и Автоматика</p>
+				</div>
+				<br>
+
+				<div class="wrap-image">        
+			 	    <img class="image" src="{{ url_for('static', filename='images/student_hat.png')}}">
+				</div>
+
+				<form id="Form" action="/password_reset" class="login-form" method="POST">
+
+					<div class="form-title">
+						Въведете имейл с който сте регистрирани в системата!
+						Ще Ви бъде изпратен имейл с линк за промяна на парола!
+					</div>
+                    <br>
+
+					<div class="wrap-input" data-validate = "Email is required!">
+						<input required type="email" name="email" placeholder="email">
+					</div>
+					<br>
+
+					<div class="div-login-btn">
+						<button class="login-btn" type="submit" >Изпрати</button>
+					</div>
+					<br>
+					{% if error %}  
+					  <p style="font-size: 15px; color: red; margin-top: 2.5px">{{error}}</p>
+					{% endif %}
+
+
+				</form>
+
+		</div>
+
+</body>
+
+</html>

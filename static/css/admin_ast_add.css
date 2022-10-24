@@ -1,0 +1,43 @@
+
+input{
+float: right;
+border-radius: 5px;
+}
+select{
+float: right;
+border-radius: 5px;
+}
+tr{
+height: 15px;
+}
+
+
+.form-title{
+float: left;
+padding: 10;
+width: auto fit
+display: ruby-text;
+color: white;
+}
+
+.add-form{
+padding: 10;
+float: left;
+display: block;
+margin: 20px;
+}
+label{
+color: white;
+}
+.add-btn{
+float: right;
+display: inline-block;
+}
+.div-wrap{
+width:430px;
+height: 200px;
+}
+
+select{
+width: 211px;
+}

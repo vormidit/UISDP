@@ -1,0 +1,97 @@
+
+body{
+	width: 100%;
+	height: 100%;
+	text-align:center;
+   	background: #eeeeee  
+}
+
+
+p, a{
+	
+	color: white;
+	font-family: "Times New Roman";
+	text-align: center;
+	text-decoration: none;
+
+}
+
+.wrap-login{
+	max-width: inherit;
+	max-height: inherit;
+	position: center;
+}
+.wrap-input{
+
+	border-radius: 15px;
+
+	
+}
+input{
+	border-radius: 13px;
+	width: 200px;
+	height: 25px;
+	border: none;
+	font-size: 17px;
+}
+.login-title{
+	font-size: 20px;
+	color: white;
+	width: 100%;
+	height: 20%;
+	padding-bottom: 5px;
+
+
+}
+.container-login{
+    width: 650px;
+	height: 450px;
+    top: 100px;
+    left: 300px;
+    right: 400px;
+	position: absolute;
+	border: 2px solid darkgrey;
+	border-radius: 25px;
+	text-align: center;
+	background: grey;
+    display: block;
+}
+.wrap-image{
+	width: 100%;
+	height: 60px;
+	float: left;
+	
+
+}
+.image{
+	vertical-align: middle;
+	width: 60px;
+	height: 60px;
+	position: center;
+
+}
+.login-form{
+	width: inherit;
+	float: right;
+
+}
+.form-title{
+	font-size: 17px;
+	color: white;
+	padding-bottom: 5px;
+	font-family: "Times New Roman";
+
+}
+.text-pswrd-link{
+	font-size: 15px;
+	font-family: "Times New Roman";
+
+}
+
+.login-btn{
+	border-radius: 15px;
+	width: 100px;
+    height: 25px;
+    font-family: "Times New Roman";
+    font-size: 15px;
+}
