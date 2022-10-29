@@ -1,0 +1,24 @@
+.information{
+display: block;
+float: left;
+color: white;
+margin-left: 20px;
+}
+
+.uploads{
+display: block;
+float: left;
+color: white;
+margin-left: 20px;
+
+}
+.downloads{
+display: block;
+float: left;
+color: white;
+margin-left: 20px;
+}
+.downloads a{
+color: whitesmoke;
+text-decoration: none;
+}

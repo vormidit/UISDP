@@ -1,6 +1,6 @@
 import time
 
-from flask import Flask, render_template, request, url_for, redirect, session, jsonify, json, flash
+from flask import Flask, render_template, request, url_for, redirect, session, jsonify, json, flash, send_file
 from flask.app import setupmethod
 from flask_pymongo import PyMongo
 from threading import Thread
@@ -39,6 +39,11 @@ app.config['MAIL_PASSWORD'] = MAIL_PASSWORD
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
+
+app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 * 10
+app.config['UPLOAD_EXTENSIONS'] = ['.doc', '.docx', '.pdf']
+app.config['UPLOAD_PATH'] = '/home/angel/Desktop/webapp/flask/uploads'
+
 
 app.config["MONGO_URI"] = "mongodb://localhost:27017/flaskDB"
 app.config["SECRET_KEY"] = 'techuniversity'
@@ -119,6 +124,9 @@ def login():
     hashed_password = found_username['password']
     role = found_username['role']
     name = found_username['username']
+    if role != 'admin':
+        fnumber = found_username['fnumber']
+        session['fnumber'] = fnumber
     session['role'] = role
     session['username'] = name
 
@@ -475,9 +483,46 @@ def student_diplom_project():
         error = "Не сте влезли или не сте студент!"
         return redirect(url_for('index', error=error))
 
-
     return render_template('student_diplom_project.html')
 
+@app.route('/student_diplom_project_upload', methods=['POST'])
+def student_diplom_project_upload():
+    if not session.get('role') or session['role'] != 'student':
+        error = "Не сте влезли или не сте студент!"
+        return redirect(url_for('index', error=error))
+
+    try:
+        current_student = mongo.db.students.find_one({"fnumber": session['fnumber']})
+    except NameError:
+        return str(NameError)
+    if current_student['thesis_path'] != 'None':
+        os.remove(os.path.join(current_student['thesis_path']))
+    file_name = current_student['fname']+'_'+current_student['lname']+'_'+current_student['fnumber']
+    file_path = app.config['UPLOAD_PATH']+'/diplom_thesis/'+file_name
+    File = request.files['file']
+    File.save(os.path.join(app.config['UPLOAD_PATH']+'/diplom_thesis', file_name))
+    try:
+        mongo.db.students.update_one({"fnumber": current_student['fnumber']},
+                                  {"$set": {"thesis_path": file_path}})
+    except NameError:
+        return str(NameError)
+    return 'Успешно качен файл!'
+
+
+@app.route('/student_diplom_project_download')
+def student_diplom_project_download():
+    if not session.get('role') or session['role'] != 'student':
+        error = "Не сте влезли или не сте студент!"
+        return redirect(url_for('index', error=error))
+
+    try:
+        current_student = mongo.db.students.find_one({"fnumber": session['fnumber']})
+    except NameError:
+        return str(NameError)
+    file_path = current_student['thesis_path']
+    if file_path != 'None':
+        return send_file(file_path, as_attachment=True)
+    return 'Нямате качен файл!'
 @app.route('/student_prof_change')
 def student_prof_change():
     if not session.get('role') or session['role'] != 'student':

@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   background-color: grey;
-  height: 40px;
+  height: 60px;
   width: 100%;
 }
 
@@ -15,7 +15,7 @@
 
 .navlink a{
   display: inline;
-  color: white;
+  color: whitesmoke;
   text-align: center;
   padding-top: 25px;
   text-decoration: none;

@@ -7,7 +7,7 @@ border-radius: 5px;
 padding: 10;
 width: auto fit
 display: ruby-text;
-color: white;
+color: whitesmoke;
 }
 
 .del-form{
@@ -16,7 +16,7 @@ float: left;
 display: block;
 }
 #response_info_search, #response_info_del{
-color: white;
+color: whitesmoke;
 float: right;
 }
 

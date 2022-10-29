@@ -17,7 +17,7 @@ float: left;
 padding: 10;
 width: auto fit
 display: ruby-text;
-color: white;
+color: whitesmoke;
 }
 
 .add-form{
@@ -27,7 +27,7 @@ display: block;
 margin: 20px;
 }
 label{
-color: white;
+color: whitesmoke;
 }
 .add-btn{
 float: right;
