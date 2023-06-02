@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8>
+    <title>Admin</title>
+      <link rel="stylesheet" href="{{ url_for('static',filename='css/admin_main.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/admin_nav.css') }}">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  
+  <body>
+
+             <div class="topnav">
+                  <div class="navlink" >
+                      <a  href="/head_of_department_main"  >Home</a>
+                  </div>
+
+                  <div class="navlink" >
+                      <a  href="/head_of_department_references"  >Справки</a>
+                  </div>
+
+                  <div class="navlink" >
+                      <a  href="/head_of_department/set-managers_student"  >Студент-Ръководител-Рецензент</a>
+                  </div>
+
+                  <div class="navlink">
+                      <a href="/head_of_department_prof_change"   >Моят Профил</a>
+                  </div>
+                  <div class="navlink" style="float:right">
+                      <a target=_parent href="{{ url_for('logout') }}">Изход</a>
+                  </div>
+            </div>
+
+             <div class="wrap">
+                 <form id="Form" style="float:left" class="search-form"  method="POST" >
+                             <div class="form-title">
+                                Въведете Факултетен номер на студент:
+                             </div>
+                             <br>
+                             <div class="wrap-input">
+                                 <input required type="text" name="fnumber">
+                             </div>
+                             <br>
+                             <div class="srch-btn">
+                                 <button type="button" onclick="searchStudent()">Търсене</button>
+                             </div>
+                 </form>
+                 <form id="Form2" style="float:right" class="search-form"  method="POST" >
+                             <div class="form-title">
+                                Преподаватели в катедрата
+                             </div>
+                             <br>
+                             <div class="srch-btn">
+                                 <button type="button" onclick="searchTeacher()">Виж</button>
+                             </div>
+                 </form>
+                  <br>
+					<div id="response_student_info_search" style="float:left">
+                    </div>
+                  <br>
+					<div id="response_teacher_info_search" style="float:right">
+                    </div>
+
+
+
+            </div>
+  </body>
+
+
+<script>
+function searchStudent(){
+
+    var form = document.getElementById('Form');
+    var formData = new FormData(form);
+    var xhttp = new XMLHttpRequest();
+    for (const value of formData.values()) {
+        if(!value){alert('Моля въведи факултетен номер!');return;}
+    }
+
+
+    xhttp.onreadystatechange = function() {
+        console.log(this.status);
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("Form").reset();
+            document.getElementById("response_student_info_search").innerHTML= xhttp.responseText;
+            document.getElementById("response_student_info_search").style.display = "block";
+      }
+    };
+    xhttp.open("POST", "/head_of_department/student_search", true);
+    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.send(JSON.stringify(Object.fromEntries(formData)));
+
+}
+function searchTeacher(){
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        console.log(this.status);
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("response_teacher_info_search").style.display = "block";
+            if(document.getElementById("mngrs_table") !== null){
+            document.getElementById("mngrs_table").remove();
+            }
+            generateTable(xhttp.responseText);
+      }
+    };
+    xhttp.open("POST", "/head_of_department/teacher_search", true);
+    xhttp.send();
+  };
+
+function generateTable(data) {
+
+  const tbl = document.createElement("table");
+  tbl.id = 'mngrs_table';
+  const tblBody = document.createElement("tbody");
+  const row = document.createElement("tr");
+  const cell = document.createElement("td");
+  const cellText = document.createTextNode('Ръководители');
+  cell.appendChild(cellText);
+  row.appendChild(cell);
+  tblBody.appendChild(row);
+  json = JSON.parse(data);
+  // creating all cells
+  for (let i = 0; i < json.length; i++) {
+    // creates a table row
+    const row = document.createElement("tr");
+
+
+    const cell = document.createElement("td");
+    const cellText = document.createTextNode(json[i].fname+' '+json[i].lname);
+    cell.appendChild(cellText);
+    row.appendChild(cell);
+
+
+    // add the row to the end of the table body
+    tblBody.appendChild(row);
+  }
+
+  // put the <tbody> in the <table>
+  tbl.appendChild(tblBody);
+  // appends <table> into <body>
+  document.getElementById("response_teacher_info_search").appendChild(tbl);
+  // sets the border attribute of tbl to '2'
+  tbl.setAttribute("border", "1");
+}
+
+
+</script>
+</html>

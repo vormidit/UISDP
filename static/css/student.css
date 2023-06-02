@@ -1,24 +1,28 @@
 .information{
 display: block;
-float: left;
 color: white;
 margin-left: 20px;
+text-align: left;
 }
 
 .uploads{
 display: block;
-float: left;
 color: white;
 margin-left: 20px;
-
+text-align: left;
 }
 .downloads{
 display: block;
-float: left;
 color: white;
 margin-left: 20px;
+text-align: left;
 }
 .downloads a{
 color: whitesmoke;
 text-decoration: none;
+}
+#Form{
+text-align: left;
+color: whitesmoke;
+margin-left: 20px;
 }

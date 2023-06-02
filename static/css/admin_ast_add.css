@@ -36,6 +36,7 @@ display: inline-block;
 .div-wrap{
 width:430px;
 height: 200px;
+text-align: left;
 }
 
 select{

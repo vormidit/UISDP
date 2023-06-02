@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8>
+    <title>Admin</title>
+      <link rel="stylesheet" href="{{ url_for('static',filename='css/admin_main.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/admin_nav.css') }}">
+	  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/student.css') }}">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  
+  <body>
+
+             <div class="topnav">
+                  <div class="navlink" >
+                      <a  href="/head_of_department_main"  >Home</a>
+                  </div>
+
+                  <div class="navlink" >
+                      <a  href="/head_of_department_references"  >Справки</a>
+                  </div>
+
+                  <div class="navlink" >
+                      <a  href="/head_of_department/set-managers_student"  >Студент-Ръководител-Рецензент</a>
+                  </div>
+
+                  <div class="navlink">
+                      <a href="/head_of_department_prof_change"   >Моят Профил</a>
+                  </div>
+                  <div class="navlink" style="float:right">
+                      <a target=_parent href="{{ url_for('logout') }}">Изход</a>
+                  </div>
+            </div>
+
+             <div class="wrap">
+                 <div>Спправки в катедра {{ data['department'] }}</div>
+                 <div class="row">
+                     <label>Справка: Студенти получили задание.
+                         <form class="ref_form" method="GET" action="/head_of_department_references_download/swt">
+                             <button id="swt" class="ad-btn" type="submit">Виж</button>
+                         </form>
+                     </label>
+                 </div>
+                 <br><br>
+                 <div class="row">
+                     <label>Справка: Студенти без задание.
+                         <form class="ref_form" method="GET" action="/head_of_department_references_download/swot">
+                             <button id="swot" class="ad-btn" type="submit">Виж</button>
+                         </form>
+                     </label>
+                 </div>
+                 <br><br>
+                 <div class="row">
+                     <label>Справка: Студенти с готов дипломен проект.
+                         <form class="ref_form" method="GET" action="/head_of_department_references_download/sup">
+                             <button id="sup" class="ad-btn" type="submit">Виж</button>
+                         </form>
+                     </label>
+                 </div>
+                 <br><br>
+                 <div class="row">
+                     <label>Справка: Студенти защитили дипломен проект.
+                         <form class="ref_form" method="GET" action="/head_of_department_references_download/sdd">
+                             <button id="sdd" class="ad-btn" type="submit">Виж</button>
+                         </form>
+                     </label>
+                 </div>
+
+
+
+
+			 </div>
+
+
+
+  </body>
+
+
+<script>
+
+
+</script>
+</html>

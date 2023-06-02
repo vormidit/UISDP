@@ -27,6 +27,7 @@ align: center;
 height: 100%;
 background-color: grey;
 text-align: center;
+color: whitesmoke;
 }
 
 .title{
@@ -69,3 +70,20 @@ color: white;
 a{
 cursor: pointer;
 }
+.row{
+float: left;
+
+
+}
+
+.ref_form{
+width: min-content;
+float: right;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    text-align:center;
+    border:1px;
+    }

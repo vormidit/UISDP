@@ -13,17 +13,20 @@
 
              <div class="topnav">
                   <div class="navlink" >
-                      <a  href="/student_main"  >Home</a>
+                      <a  href="/head_of_department_main"  >Home</a>
                   </div>
 
-                 <div class="navlink" >
-                      <a  href="/student_diplom_project"  >Дипломен проект</a>
-                 </div>
+                  <div class="navlink" >
+                      <a  href="/head_of_department_references"  >Справки</a>
+                  </div>
 
-                 <div class="navlink" >
-                      <a  href="/student_prof_change"  >Моят Профил</a>
-                 </div>
+                  <div class="navlink" >
+                      <a  href="/head_of_department_smr_set"  >Студент-Ръководител-Рецензент</a>
+                  </div>
 
+                  <div class="navlink">
+                      <a href="/head_of_department_prof_change"   >Моят Профил</a>
+                  </div>
                   <div class="navlink" style="float:right">
                       <a target=_parent href="{{ url_for('logout') }}">Изход</a>
                   </div>
@@ -90,7 +93,7 @@ function profileForm(){
             alert("Успешна промяна!");
       }
     };
-    xhttp.open("POST", "/student_prof_change", true);
+    xhttp.open("POST", "/head_of_department_prof_change", true);
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.send(JSON.stringify(Object.fromEntries(formData)));
 }

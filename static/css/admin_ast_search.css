@@ -11,8 +11,9 @@ color: whitesmoke;
 }
 
 .search-form{
-padding: 10;
 float: left;
+margin-left: 20px;
+text-align: left;
 }
 #response_info_search, #response_info_del{
 color: whitesmoke;

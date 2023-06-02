@@ -31,8 +31,43 @@
 
              <div class="wrap">
 
+                  <br>
                   <div class="information">
                       <h3>Дипломна работа</h3>
+                      <table>
+                          <tr>
+                              <th>
+                                  Тема на Дипломна работа:
+                              </th>
+                              <td>
+                                  {{data['thesis_name']}}
+                              </td>
+                          </tr>
+                          <tr>
+                              <th>
+                                  Ръководител на Дипломна работа:
+                              </th>
+                              <td>
+                                  {{data['project_manager']}}
+                              </td>
+                          </tr>
+                          <tr>
+                              <th>
+                                  Рецензент на Дипломна работа:
+                              </th>
+                              <td>
+                                  {{data['reviewer']}}
+                              </td>
+                          </tr>
+                          <tr>
+                              <th>
+                                  Защитил Дипломна работа:
+                              </th>
+                              <td>
+                                  {{data['degree_defense']}}
+                              </td>
+                          </tr>
+                      </table>
 
                   </div>
                   <br>
@@ -48,7 +83,7 @@
                           </div>
                           <br>
                           <div>
-                          <button>Submit</button>
+                          <button>Upload</button>
                           </div>
 
 
@@ -58,7 +93,7 @@
                   <br>
                   <div class="downloads">
                       <h3>Сваляне и Редактиране</h3>
-                      <a class="btn btn-success" href="/student_diplom_project_download">Свали</a>
+                      <button class="btn btn-success" onclick="window.location.href='/student_diplom_project_download';">Download</button>
                   </div>
 
              </div>
